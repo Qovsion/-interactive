@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章列表</title>
+    <link rel="stylesheet" href="assets/js/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/iconfont.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/jquery.pagination.css">
+    <script src="./assets/js/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/jquery.twbsPagination.min.js"></script>
+    <script src="./assets/js/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="common_title">
+            文章列表
+        </div>
+        <div class="container-fluid common_con">
+            <div class="row opt_btns">
+                <div class="col-xs-6">
+                    <form class="form-inline">
+                        <select id="selCategory" name="" class="form-control input-sm">
+                            <!-- 数据加载 -->
+                        </select>
+                        <select id="selStatus" name="" class="form-control input-sm">
+                            <option>所有状态</option>
+                            <option value="drafted">草稿</option>
+                            <option value="published">已发布</option>
+                        </select>
+                        <button id="btnSearch" class="btn btn-default btn-sm">筛选</button>
+                    </form>
+                </div>
+                <div class="col-xs-6">
+                    <a href="article_release.html" class="btn btn-success btn-sm pull-right" id="release_btn">发表文章</a>
+                </div>
+            </div>
+
+            <table class="table table-striped table-bordered table-hover mp20">
+                <thead>
+                    <tr>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>分类</th>
+                        <th class="text-center">发表时间</th>
+                        <th class="text-center">状态</th>
+                        <th class="text-center" width="100">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    <!-- 数据加载 -->
+
+
+
+                </tbody>
+            </table>
+
+            <div class="list_new">
+                <div id="pagination" class="page"></div>
+                <ul class="pagination" id="pagination"></ul>
+            </div>
+
+        </div>
+
+        <!-- 分页 -->
+
+
+    </div>
+
+    <script>
+        // 设置左侧菜单
+        $('#release_btn').click(function () {
+            window.parent.setMenu(1, 1);
+        })
+    </script>
+
+    <script src="./assets/js/template-web.js"></script>
+
+    <script type="text/html" id="moban">
+        {{each arr}}
+        <tr>
+                        
+                <td>{{$value.title}}</td>
+                <td>{{$value.nickname}}</td>
+                <td data-id="{{$value.cateid}}" >{{$value.catename}}</td>
+                <td class="text-center">{{$value.addtime}}</td>
+
+
+                <td class="text-center">{{$value.state}}</td>
+
+
+                <td class="text-center">
+                    <a href="./article_update.html?id={{$value.id}}" class="btn btn-default btn-xs">编辑</a>
+                    <a href="javascript:;" data-id="{{$value.id}}" class="btn btn-danger btn-xs">删除</a>
+                </td>
+            </tr>
+    {{/each}}
+    </script>
+
+
+
+    <script>
+        var can = {
+            cateid: null,
+            keywords: null,
+            state: '已发布',
+            pageNum: 5,
+            page: 1,
+        }
+
+        var flag = true;
+        function lodaDate() {
+            $.get('/admin/getArticlesWithPage', can, function (res) {
+                console.log(res);
+                var str = template('moban', {
+                    arr: res.data
+                })
+                // 调用page函数 传入总页数实参 
+
+                if (flag) {
+                    page(res.pageTotal);
+                    flag = false;
+                }
+                $('tbody').html(str);
+                var id = $('#selCategory option').attr('data-id');
+                $('#selCategory').click(function (res) {
+                    if (id == res.cateid) {
+
+                    }
+                })
+            }, 'json')
+        }
+        lodaDate();
+
+
+
+    </script>
+
+    <script type="text/html" id="fenlei">
+        <option checked>所有分类</option>
+        {{each arr}}
+        <option id="enen" data-id="{{$value.id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
+    <script>
+        function page(totle) {
+            window.pagObj = $('#pagination').twbsPagination({
+                totalPages: totle,//总页数
+                visiblePages: 10, //一页显示多少数据
+
+            }).on('page', function (event, page) {
+                can.page = page;
+
+                lodaDate();
+
+            });
+        }
+        // 
+
+        $.get('/admin/getCategory', function (res) {
+            console.log(res);
+            var str = template('fenlei', {
+                arr: res
+            })
+            $('#selCategory').append(str);
+            
+
+        })
+
+        // 根据文章id删除文章
+        $('body').on('click', '.btn-danger', function () {
+            if (!confirm('确定删除吗')) {
+                return;
+            }
+            var id = $('.btn-danger').attr('data-id');
+            $.get('/admin/deleteArticle', { id: id }, function (res) {
+                alert(res.message);
+                if (res.code == 200) {
+                    location.reload();
+                }
+            })
+        })
+
+
+        // 筛选
+
+
+    </script>
+
+</body>
+
+</html>

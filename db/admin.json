@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "email": "123@123.com",
+        "nickname": "大牛",
+        "tel": 13261266231,
+        "pwd": "123",
+        "addtime": null,
+        "pic": null,
+        "state": "激活"
+    },
+    {
+        "id": 2,
+        "email": "456@456.com",
+        "nickname": "小牛",
+        "tel": 13261266231,
+        "pwd": "456",
+        "addtime": null,
+        "pic": null,
+        "state": "激活"
+    },
+    {
+        "id": 3,
+        "email": "789@789.com",
+        "nickname": "老牛",
+        "tel": 13261266231,
+        "pwd": "789",
+        "addtime": null,
+        "pic": null,
+        "state": "激活"
+    },
+    {
+        "id": 4,
+        "email": "asdf@qq.com",
+        "nickname": "猛牛",
+        "tel": 13261266231,
+        "pwd": "111",
+        "addtime": null,
+        "pic": null,
+        "state": "禁用"
+    }
+]

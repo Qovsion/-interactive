@@ -1,0 +1,10 @@
+router文件夹，存放项目所有的路由文件
+
+前台（home）：
+    home.js -- 处理前台的三个页面
+
+后台（admin）：
+    admin.js -- 处理后台的admin文件夹中的 index.html 和 login.html 相关的接口
+    admin_cate.js -- 处理 admin/cate 文件夹中的 相关的接口
+    admin_user.js -- 处理 admin/user 文件夹中的 相关的接口
+    admin_post.js -- 处理 admin/post 文件夹中的 相关的接口

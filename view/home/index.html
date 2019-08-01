@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>大事件-首页</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="#" class="logo fl"><img src="assets/images/logo.png" alt="logo"></a>
+        <div class="search_form fl">
+            <input type="text" class="search_txt" placeholder="黑洞照片">
+            <button class="search_btn"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="link_info fr">
+            <a href="#"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;网站地图</a><br>
+            <a href="#"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;招聘信息</a>
+        </div>
+    </div>
+
+    <div class="menu_con">
+        <div class="menu">
+            <div class="menu_collapse fl">
+                <a href="javascript:;" class="level_one"><i class="fa fa-list-ul"></i>全部分类</a>
+                <ul class="level_two">
+                    <li class="up"></li>
+                    <!-- 动态数据 -->
+                </ul>
+            </div>
+            <ul class="left_menu fl">
+                <!-- 动态数据 -->
+            </ul>
+            <ul class="right_menu fr">
+                <li><a href="#">科技专题</a></li>
+                <li><a href="#">财经专题</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main_con clearfix">
+        <div class="left_con">
+            <ul class="focus_list">
+                <!-- 动态数据 -->
+            </ul>
+
+            <div class="common_title">
+                <h3><i class="fa fa-edit"></i> 最新资讯</h3>
+                <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
+            </div>
+
+            <!-- 动态数据 -->
+
+        </div>
+        <div class="right_con">
+            <div class="common_wrap">
+                <h3><i class="fa fa-bar-chart"></i> 一周热门排行</h3>
+                <ul class="content_list">
+                    <!-- 动态数据 -->
+                </ul>
+            </div>
+            <div class="common_wrap">
+                <h3><i class="fa fa-commenting-o"></i> 最新评论</h3>
+                <ul class="content_list comment_list">
+                    <li>
+                        <span>山</span>
+                        <b><em>山治</em> 9个月前(08-14)说:</b>
+                        <strong>挺会玩的</strong>
+                    </li>
+                    <li>
+                        <span>丽</span>
+                        <b><em>丽丽</em> 9个月前(08-14)说:9个月前(08-14)说:9个月前(08-14)说:</b>
+                        <strong>挺会玩的挺会玩的挺会玩的挺会玩的</strong>
+                    </li>
+                    <li>
+                        <span>R</span>
+                        <b><em>Rechael</em> 9个月前(08-14)说:</b>
+                        <strong>挺会玩的</strong>
+                    </li>
+                    <li>
+                        <span>J</span>
+                        <b><em>John</em> 9个月前(08-14)说:</b>
+                        <strong>挺会玩的</strong>
+                    </li>
+                    <li>
+                        <span>段</span>
+                        <b><em>段正淳</em> 9个月前(08-14)说:</b>
+                        <strong>挺会玩的</strong>
+                    </li>
+                    <li>
+                        <span>乔</span>
+                        <b><em>乔峰</em> 9个月前(08-14)说:</b>
+                        <strong>挺会玩的</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="common_wrap">
+                <h3><i class="fa fa-bullseye"></i> 焦点关注</h3>
+                <ul class="content_list guanzhu_list">
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer clearfix">
+        <div class="foot_link">
+            <a href="#">关于我们</a>
+            <span>|</span>
+            <a href="#">联系我们</a>
+            <span>|</span>
+            <a href="#">招聘人才</a>
+            <span>|</span>
+            <a href="#">友情链接</a>
+        </div>
+        <p>CopyRight © 2019 深圳大事件信息技术股份有限公司 All Rights Reserved</p>
+        <p>电话：0755-****888 粤ICP备*******8号</p>
+    </div>
+
+    <script src="./assets/js/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/template-web.js"></script>
+    <script src="./assets/js/index.js"></script>
+
+    <script type='text/html' id="moban">
+        {{each arr}}
+            <li><a href="./list.html?id={{$value.id}}">{{$value.name}}</a></li>
+        {{/each}}
+    </script>
+
+
+    <script type='text/html' id="jiaodian">
+        {{each arr}}
+        {{if $index==0}}
+        <li class="first">
+        {{else}}
+        <li>
+        {{/if}}
+            <a href="./detail.html?id={{$value.id}}"><img src="{{$value.file}}" alt=""></a>
+            <p>{{$value.title}}</p>
+        </li>
+        {{/each}}
+    </script>
+
+
+    <script type='text/html' id="zuixin">
+            {{each abc}}
+            <div class="common_news_list">
+                    <a href="./detail.html?id={{$value.id}}" class="list_pic"><img src="{{$value.file}}" alt=""></a>
+                    <h4><a href="./detail.html?id={{$value.id}}">{{$value.title}}</a></h4>
+                    <p>
+                        {{$value.desc}}
+                    </p>
+                    <div class="new_info">
+                        <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( {{$value.click}}
+                            )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
+                        <b>发布于 {{$value.addtime}}</b>
+                    </div>
+                </div>
+                {{/each}}
+        </script>
+
+
+        <script type='text/html' id="paihang">
+            {{each arr}}
+              <!-- first second   third-->
+                    <li>
+                        {{if $index==0}}
+                        <span class='first'>{{$index + 1}}</span>
+                        {{else if $index==1}}
+                        <span class='second'>{{$index + 1}}</span>
+                        {{else if $index==2}}
+                        <span class='third'>{{$index + 1}}</span>
+                        {{else}}
+                        <span >{{$index + 1}}</span>
+                        {{/if}}
+                        <a href="./detail.html?id={{$value.id}}">{{$value.text}}</a>
+                    
+                    </li>
+              {{/each}}
+            </script>
+            <script type='text/html' id="guanzhu">
+                {{each arr}}
+                        <li><a href="./detail.html?id={{$value.id}}">{{$value.desc}}</a></li>
+                  {{/each}}
+                </script>
+
+    <script>
+       daohang();
+        
+            //获取焦点图数据
+            $.get('/getArticles', { flag: 'good' }, function (res) {
+                var str = template('jiaodian', {
+                    arr: res.data
+                })
+                $('.focus_list').append(str);
+            })
+           zixun();
+           paihangbang();
+           guanzhu();
+    </script>
+</body>
+
+</html>
